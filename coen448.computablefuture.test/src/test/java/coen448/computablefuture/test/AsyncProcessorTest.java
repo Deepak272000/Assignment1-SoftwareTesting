@@ -8,6 +8,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -178,6 +179,41 @@ public class AsyncProcessorTest {
             List.of("msg", "msg"));
 
         assertThrows(ExecutionException.class, () -> resultFuture.get(1, TimeUnit.SECONDS));
+    }
+
+
+    @Test
+    void testProcessAsyncFailPartial_returnsOnlySuccess_noExceptionEscapes() throws Exception {
+        Microservice okService1 = new Microservice("S1") {
+            @Override
+            public CompletableFuture<String> retrieveAsync(String input) {
+                return CompletableFuture.completedFuture("S1:" + input);
+            }
+        };
+        Microservice failingService = new Microservice("FAIL") {
+            @Override
+            public CompletableFuture<String> retrieveAsync(String input) {
+                return CompletableFuture.failedFuture(new RuntimeException("boom"));
+            }
+        };
+        Microservice okService2 = new Microservice("S3") {
+            @Override
+            public CompletableFuture<String> retrieveAsync(String input) {
+                return CompletableFuture.completedFuture("S3:" + input);
+            }
+        };
+
+        AsyncProcessor processor = new AsyncProcessor();
+
+        CompletableFuture<List<String>> resultFuture = processor.processAsyncFailPartial(
+            List.of(okService1, failingService, okService2),
+            List.of("m1", "m2", "m3"));
+
+        List<String> results = assertDoesNotThrow(() -> resultFuture.get(1, TimeUnit.SECONDS));
+
+        assertEquals(2, results.size());
+        assertTrue(results.contains("S1:m1"));
+        assertTrue(results.contains("S3:m3"));
     }
 }
 	
