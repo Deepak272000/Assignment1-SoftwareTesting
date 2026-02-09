@@ -71,5 +71,23 @@ public class AsyncProcessor {
                 .collect(Collectors.toList()));
 
     }
+
+    public CompletableFuture<String> processAsyncFailSoft(
+            List<Microservice> services,
+            List<String> messages,
+            String fallbackValue) {
+
+        List<CompletableFuture<String>> futures = IntStream.range(0, services.size())
+            .mapToObj(i -> services.get(i).retrieveAsync(messages.get(i))
+                .handle((value, ex) -> ex == null ? value : fallbackValue))
+            .collect(Collectors.toList());
+
+        // Fail-soft: substitutes failures with fallback values, which can mask issues.
+        return CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]))
+            .thenApply(v -> futures.stream()
+                .map(CompletableFuture::join)
+                .collect(Collectors.joining(" ")));
+
+    }
     
 }

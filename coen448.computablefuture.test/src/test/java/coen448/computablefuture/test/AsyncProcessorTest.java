@@ -215,5 +215,41 @@ public class AsyncProcessorTest {
         assertTrue(results.contains("S1:m1"));
         assertTrue(results.contains("S3:m3"));
     }
+
+
+    @Test
+    void testProcessAsyncFailSoft_usesFallback_andAlwaysCompletes() throws Exception {
+        Microservice okService1 = new Microservice("S1") {
+            @Override
+            public CompletableFuture<String> retrieveAsync(String input) {
+                return CompletableFuture.completedFuture("S1:" + input);
+            }
+        };
+        Microservice failingService = new Microservice("FAIL") {
+            @Override
+            public CompletableFuture<String> retrieveAsync(String input) {
+                return CompletableFuture.failedFuture(new RuntimeException("boom"));
+            }
+        };
+        Microservice okService2 = new Microservice("S3") {
+            @Override
+            public CompletableFuture<String> retrieveAsync(String input) {
+                return CompletableFuture.completedFuture("S3:" + input);
+            }
+        };
+
+        AsyncProcessor processor = new AsyncProcessor();
+
+        CompletableFuture<String> resultFuture = processor.processAsyncFailSoft(
+            List.of(okService1, failingService, okService2),
+            List.of("m1", "m2", "m3"),
+            "FALLBACK");
+
+        String result = assertDoesNotThrow(() -> resultFuture.get(1, TimeUnit.SECONDS));
+
+        assertTrue(result.contains("FALLBACK"));
+        assertTrue(result.contains("S1:m1"));
+        assertTrue(result.contains("S3:m3"));
+    }
 }
 	
