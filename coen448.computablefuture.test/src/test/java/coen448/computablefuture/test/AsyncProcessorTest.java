@@ -1,30 +1,42 @@
 package coen448.computablefuture.test;
 
 
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
-import java.util.List;
-import java.util.concurrent.*;
-import org.junit.jupiter.api.RepeatedTest;
-
 public class AsyncProcessorTest {
 	@RepeatedTest(5)
-    public void testProcessAsyncSuccess() throws ExecutionException, InterruptedException {
+    public void testProcessAsyncSuccess() throws ExecutionException, InterruptedException, TimeoutException {
         
-		Microservice mockService1 = mock(Microservice.class);
-        Microservice mockService2 = mock(Microservice.class);
-        
-        when(mockService1.retrieveAsync(any())).thenReturn(CompletableFuture.completedFuture("Hello"));
-        when(mockService2.retrieveAsync(any())).thenReturn(CompletableFuture.completedFuture("World"));
+		Microservice service1 = new Microservice("Hello") {
+            @Override
+            public CompletableFuture<String> retrieveAsync(String input) {
+                return CompletableFuture.completedFuture("Hello");
+            }
+        };
+        Microservice service2 = new Microservice("World") {
+            @Override
+            public CompletableFuture<String> retrieveAsync(String input) {
+                return CompletableFuture.completedFuture("World");
+            }
+        };
 
         AsyncProcessor processor = new AsyncProcessor();
-        CompletableFuture<String> resultFuture = processor.processAsync(List.of(mockService1, mockService2), null);
+        CompletableFuture<String> resultFuture = processor.processAsync(List.of(service1, service2), "msg");
         
-        String result = resultFuture.get();
+		String result = resultFuture.get(1, TimeUnit.SECONDS);
         assertEquals("Hello World", result);
         
 //        CompletableFuture<List<String>> resultFuture =
@@ -49,8 +61,18 @@ public class AsyncProcessorTest {
             String expectedResult)
             throws ExecutionException, InterruptedException, TimeoutException {
 
-        Microservice service1 = new Microservice("Hello");
-        Microservice service2 = new Microservice("World");
+        Microservice service1 = new Microservice("Hello") {
+            @Override
+            public CompletableFuture<String> retrieveAsync(String input) {
+                return CompletableFuture.completedFuture("Hello:" + input.toUpperCase());
+            }
+        };
+        Microservice service2 = new Microservice("World") {
+            @Override
+            public CompletableFuture<String> retrieveAsync(String input) {
+                return CompletableFuture.completedFuture("World:" + input.toUpperCase());
+            }
+        };
 
         AsyncProcessor processor = new AsyncProcessor();
 
@@ -67,9 +89,54 @@ public class AsyncProcessorTest {
 	@RepeatedTest(20)
     void showNondeterminism_completionOrderVaries() throws Exception {
 
-        Microservice s1 = new Microservice("A");
-        Microservice s2 = new Microservice("B");
-        Microservice s3 = new Microservice("C");
+        Microservice s1 = new Microservice("A") {
+            @Override
+            public CompletableFuture<String> retrieveAsync(String input) {
+                return CompletableFuture.completedFuture(input)
+                    .thenApplyAsync(value -> {
+                        int delayMs = ThreadLocalRandom.current().nextInt(0, 31);
+                        try {
+                            TimeUnit.MILLISECONDS.sleep(delayMs);
+                        } catch (InterruptedException e) {
+                            Thread.currentThread().interrupt();
+                            throw new RuntimeException(e);
+                        }
+                        return "A:" + value.toUpperCase();
+                    });
+            }
+        };
+        Microservice s2 = new Microservice("B") {
+            @Override
+            public CompletableFuture<String> retrieveAsync(String input) {
+                return CompletableFuture.completedFuture(input)
+                    .thenApplyAsync(value -> {
+                        int delayMs = ThreadLocalRandom.current().nextInt(0, 31);
+                        try {
+                            TimeUnit.MILLISECONDS.sleep(delayMs);
+                        } catch (InterruptedException e) {
+                            Thread.currentThread().interrupt();
+                            throw new RuntimeException(e);
+                        }
+                        return "B:" + value.toUpperCase();
+                    });
+            }
+        };
+        Microservice s3 = new Microservice("C") {
+            @Override
+            public CompletableFuture<String> retrieveAsync(String input) {
+                return CompletableFuture.completedFuture(input)
+                    .thenApplyAsync(value -> {
+                        int delayMs = ThreadLocalRandom.current().nextInt(0, 31);
+                        try {
+                            TimeUnit.MILLISECONDS.sleep(delayMs);
+                        } catch (InterruptedException e) {
+                            Thread.currentThread().interrupt();
+                            throw new RuntimeException(e);
+                        }
+                        return "C:" + value.toUpperCase();
+                    });
+            }
+        };
 
         AsyncProcessor processor = new AsyncProcessor();
 
@@ -86,6 +153,31 @@ public class AsyncProcessorTest {
         assertTrue(order.stream().anyMatch(x -> x.startsWith("A:")));
         assertTrue(order.stream().anyMatch(x -> x.startsWith("B:")));
         assertTrue(order.stream().anyMatch(x -> x.startsWith("C:")));
+    }
+
+
+    @Test
+    void failFast_processAsyncFailFast_throwsOnAnyFailure() throws Exception {
+        Microservice okService = new Microservice("OK") {
+            @Override
+            public CompletableFuture<String> retrieveAsync(String input) {
+                return CompletableFuture.completedFuture("OK:" + input.toUpperCase());
+            }
+        };
+        Microservice failingService = new Microservice("FAIL") {
+            @Override
+            public CompletableFuture<String> retrieveAsync(String input) {
+                return CompletableFuture.failedFuture(new RuntimeException("boom"));
+            }
+        };
+
+        AsyncProcessor processor = new AsyncProcessor();
+
+        CompletableFuture<String> resultFuture = processor.processAsyncFailFast(
+            List.of(okService, failingService),
+            List.of("msg", "msg"));
+
+        assertThrows(ExecutionException.class, () -> resultFuture.get(1, TimeUnit.SECONDS));
     }
 }
 	

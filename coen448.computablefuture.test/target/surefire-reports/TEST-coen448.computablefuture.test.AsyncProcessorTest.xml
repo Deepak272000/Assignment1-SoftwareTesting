@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="coen448.computablefuture.test.AsyncProcessorTest" time="1.066" tests="28" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="coen448.computablefuture.test.AsyncProcessorTest" time="0.654" tests="29" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="22"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.class.path" value="E:\SoftwareTesting\Assignment1-SoftwareTesting\Assignment1-SoftwareTesting\coen448.computablefuture.test\target\test-classes;E:\SoftwareTesting\Assignment1-SoftwareTesting\Assignment1-SoftwareTesting\coen448.computablefuture.test\target\classes;C:\Users\Deepak Chavan\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.1\junit-jupiter-engine-5.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\platform\junit-platform-engine\1.9.1\junit-platform-engine-1.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.1\junit-jupiter-api-5.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\platform\junit-platform-commons\1.9.1\junit-platform-commons-1.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.9.1\junit-jupiter-params-5.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\platform\junit-platform-suite\1.9.1\junit-platform-suite-1.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\platform\junit-platform-suite-api\1.9.1\junit-platform-suite-api-1.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\platform\junit-platform-suite-engine\1.9.1\junit-platform-suite-engine-1.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\platform\junit-platform-suite-commons\1.9.1\junit-platform-suite-commons-1.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\platform\junit-platform-console-standalone\1.9.1\junit-platform-console-standalone-1.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\platform\junit-platform-reporting\1.9.1\junit-platform-reporting-1.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\platform\junit-platform-launcher\1.9.1\junit-platform-launcher-1.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\apache\commons\commons-lang3\3.12.0\commons-lang3-3.12.0.jar;C:\Users\Deepak Chavan\.m2\repository\org\mockito\mockito-core\3.6.28\mockito-core-3.6.28.jar;C:\Users\Deepak Chavan\.m2\repository\net\bytebuddy\byte-buddy\1.10.18\byte-buddy-1.10.18.jar;C:\Users\Deepak Chavan\.m2\repository\net\bytebuddy\byte-buddy-agent\1.10.18\byte-buddy-agent-1.10.18.jar;C:\Users\Deepak Chavan\.m2\repository\org\objenesis\objenesis\3.1\objenesis-3.1.jar;"/>
+    <property name="java.class.path" value="E:\SoftwareTesting\Assignment1-SoftwareTesting\Assignment1-SoftwareTesting\coen448.computablefuture.test\target\test-classes;E:\SoftwareTesting\Assignment1-SoftwareTesting\Assignment1-SoftwareTesting\coen448.computablefuture.test\target\classes;C:\Users\Deepak Chavan\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.1\junit-jupiter-engine-5.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\platform\junit-platform-engine\1.9.1\junit-platform-engine-1.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.1\junit-jupiter-api-5.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\platform\junit-platform-commons\1.9.1\junit-platform-commons-1.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.9.1\junit-jupiter-params-5.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\platform\junit-platform-suite\1.9.1\junit-platform-suite-1.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\platform\junit-platform-suite-api\1.9.1\junit-platform-suite-api-1.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\platform\junit-platform-suite-engine\1.9.1\junit-platform-suite-engine-1.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\platform\junit-platform-suite-commons\1.9.1\junit-platform-suite-commons-1.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\platform\junit-platform-console-standalone\1.9.1\junit-platform-console-standalone-1.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\platform\junit-platform-reporting\1.9.1\junit-platform-reporting-1.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\platform\junit-platform-launcher\1.9.1\junit-platform-launcher-1.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\apache\commons\commons-lang3\3.12.0\commons-lang3-3.12.0.jar;"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
@@ -15,10 +15,10 @@
     <property name="user.country" value="IN"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-22\bin"/>
-    <property name="sun.java.command" value="C:\Users\Deepak Chavan\AppData\Local\Temp\surefire8897923119180860779\surefirebooter-20260208205846302_3.jar C:\Users\Deepak Chavan\AppData\Local\Temp\surefire8897923119180860779 2026-02-08T20-58-45_971-jvmRun1 surefire-20260208205846302_1tmp surefire_0-20260208205846302_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\Deepak Chavan\AppData\Local\Temp\surefire1449002382984842786\surefirebooter-20260208220847036_3.jar C:\Users\Deepak Chavan\AppData\Local\Temp\surefire1449002382984842786 2026-02-08T22-08-46_698-jvmRun1 surefire-20260208220847036_1tmp surefire_0-20260208220847036_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="test" value="coen448.computablefuture.test.AsyncProcessorTest"/>
-    <property name="surefire.test.class.path" value="E:\SoftwareTesting\Assignment1-SoftwareTesting\Assignment1-SoftwareTesting\coen448.computablefuture.test\target\test-classes;E:\SoftwareTesting\Assignment1-SoftwareTesting\Assignment1-SoftwareTesting\coen448.computablefuture.test\target\classes;C:\Users\Deepak Chavan\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.1\junit-jupiter-engine-5.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\platform\junit-platform-engine\1.9.1\junit-platform-engine-1.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.1\junit-jupiter-api-5.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\platform\junit-platform-commons\1.9.1\junit-platform-commons-1.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.9.1\junit-jupiter-params-5.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\platform\junit-platform-suite\1.9.1\junit-platform-suite-1.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\platform\junit-platform-suite-api\1.9.1\junit-platform-suite-api-1.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\platform\junit-platform-suite-engine\1.9.1\junit-platform-suite-engine-1.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\platform\junit-platform-suite-commons\1.9.1\junit-platform-suite-commons-1.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\platform\junit-platform-console-standalone\1.9.1\junit-platform-console-standalone-1.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\platform\junit-platform-reporting\1.9.1\junit-platform-reporting-1.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\platform\junit-platform-launcher\1.9.1\junit-platform-launcher-1.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\apache\commons\commons-lang3\3.12.0\commons-lang3-3.12.0.jar;C:\Users\Deepak Chavan\.m2\repository\org\mockito\mockito-core\3.6.28\mockito-core-3.6.28.jar;C:\Users\Deepak Chavan\.m2\repository\net\bytebuddy\byte-buddy\1.10.18\byte-buddy-1.10.18.jar;C:\Users\Deepak Chavan\.m2\repository\net\bytebuddy\byte-buddy-agent\1.10.18\byte-buddy-agent-1.10.18.jar;C:\Users\Deepak Chavan\.m2\repository\org\objenesis\objenesis\3.1\objenesis-3.1.jar;"/>
+    <property name="surefire.test.class.path" value="E:\SoftwareTesting\Assignment1-SoftwareTesting\Assignment1-SoftwareTesting\coen448.computablefuture.test\target\test-classes;E:\SoftwareTesting\Assignment1-SoftwareTesting\Assignment1-SoftwareTesting\coen448.computablefuture.test\target\classes;C:\Users\Deepak Chavan\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.1\junit-jupiter-engine-5.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\platform\junit-platform-engine\1.9.1\junit-platform-engine-1.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.1\junit-jupiter-api-5.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\platform\junit-platform-commons\1.9.1\junit-platform-commons-1.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.9.1\junit-jupiter-params-5.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\platform\junit-platform-suite\1.9.1\junit-platform-suite-1.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\platform\junit-platform-suite-api\1.9.1\junit-platform-suite-api-1.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\platform\junit-platform-suite-engine\1.9.1\junit-platform-suite-engine-1.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\platform\junit-platform-suite-commons\1.9.1\junit-platform-suite-commons-1.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\platform\junit-platform-console-standalone\1.9.1\junit-platform-console-standalone-1.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\platform\junit-platform-reporting\1.9.1\junit-platform-reporting-1.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\junit\platform\junit-platform-launcher\1.9.1\junit-platform-launcher-1.9.1.jar;C:\Users\Deepak Chavan\.m2\repository\org\apache\commons\commons-lang3\3.12.0\commons-lang3-3.12.0.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\Deepak Chavan"/>
     <property name="user.language" value="en"/>
@@ -31,7 +31,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\Deepak Chavan\AppData\Local\Temp\surefire8897923119180860779\surefirebooter-20260208205846302_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Deepak Chavan\AppData\Local\Temp\surefire1449002382984842786\surefirebooter-20260208220847036_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="22.0.2+9-70"/>
@@ -60,47 +60,28 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="66.0"/>
   </properties>
-  <testcase name="testProcessAsyncSuccess" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.39"/>
+  <testcase name="testProcessAsyncSuccess" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.036"/>
+  <testcase name="testProcessAsyncSuccess" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.001"/>
+  <testcase name="testProcessAsyncSuccess" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.001"/>
   <testcase name="testProcessAsyncSuccess" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0"/>
-  <testcase name="testProcessAsyncSuccess" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0"/>
-  <testcase name="testProcessAsyncSuccess" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.011"/>
-  <testcase name="testProcessAsyncSuccess" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.003"/>
-  <testcase name="testProcessAsync_withDifferentMessages(String, String)[1]" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.045"/>
-  <testcase name="testProcessAsync_withDifferentMessages(String, String)[2]" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.015"/>
-  <testcase name="testProcessAsync_withDifferentMessages(String, String)[3]" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.022"/>
-  <testcase name="showNondeterminism_completionOrderVaries" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.034">
-    <system-out><![CDATA[[C:MSG, A:MSG, B:MSG]
+  <testcase name="testProcessAsyncSuccess" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.001"/>
+  <testcase name="failFast_processAsyncFailFast_throwsOnAnyFailure" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.004"/>
+  <testcase name="testProcessAsync_withDifferentMessages(String, String)[1]" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.015"/>
+  <testcase name="testProcessAsync_withDifferentMessages(String, String)[2]" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0"/>
+  <testcase name="testProcessAsync_withDifferentMessages(String, String)[3]" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0"/>
+  <testcase name="showNondeterminism_completionOrderVaries" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.035">
+    <system-out><![CDATA[[A:MSG, B:MSG, C:MSG]
 ]]></system-out>
   </testcase>
   <testcase name="showNondeterminism_completionOrderVaries" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.03">
+    <system-out><![CDATA[[A:MSG, B:MSG, C:MSG]
+]]></system-out>
+  </testcase>
+  <testcase name="showNondeterminism_completionOrderVaries" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.025">
     <system-out><![CDATA[[B:MSG, C:MSG, A:MSG]
 ]]></system-out>
   </testcase>
   <testcase name="showNondeterminism_completionOrderVaries" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.027">
-    <system-out><![CDATA[[A:MSG, C:MSG, B:MSG]
-]]></system-out>
-  </testcase>
-  <testcase name="showNondeterminism_completionOrderVaries" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.031">
-    <system-out><![CDATA[[C:MSG, A:MSG, B:MSG]
-]]></system-out>
-  </testcase>
-  <testcase name="showNondeterminism_completionOrderVaries" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.024">
-    <system-out><![CDATA[[B:MSG, C:MSG, A:MSG]
-]]></system-out>
-  </testcase>
-  <testcase name="showNondeterminism_completionOrderVaries" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.015">
-    <system-out><![CDATA[[B:MSG, C:MSG, A:MSG]
-]]></system-out>
-  </testcase>
-  <testcase name="showNondeterminism_completionOrderVaries" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.024">
-    <system-out><![CDATA[[A:MSG, C:MSG, B:MSG]
-]]></system-out>
-  </testcase>
-  <testcase name="showNondeterminism_completionOrderVaries" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.03">
-    <system-out><![CDATA[[A:MSG, C:MSG, B:MSG]
-]]></system-out>
-  </testcase>
-  <testcase name="showNondeterminism_completionOrderVaries" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.017">
     <system-out><![CDATA[[B:MSG, C:MSG, A:MSG]
 ]]></system-out>
   </testcase>
@@ -108,44 +89,64 @@
     <system-out><![CDATA[[A:MSG, B:MSG, C:MSG]
 ]]></system-out>
   </testcase>
-  <testcase name="showNondeterminism_completionOrderVaries" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.011">
-    <system-out><![CDATA[[C:MSG, A:MSG, B:MSG]
-]]></system-out>
-  </testcase>
-  <testcase name="showNondeterminism_completionOrderVaries" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.023">
-    <system-out><![CDATA[[C:MSG, B:MSG, A:MSG]
-]]></system-out>
-  </testcase>
-  <testcase name="showNondeterminism_completionOrderVaries" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.022">
-    <system-out><![CDATA[[A:MSG, C:MSG, B:MSG]
-]]></system-out>
-  </testcase>
-  <testcase name="showNondeterminism_completionOrderVaries" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.023">
-    <system-out><![CDATA[[B:MSG, C:MSG, A:MSG]
-]]></system-out>
-  </testcase>
-  <testcase name="showNondeterminism_completionOrderVaries" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.031">
-    <system-out><![CDATA[[C:MSG, B:MSG, A:MSG]
-]]></system-out>
-  </testcase>
-  <testcase name="showNondeterminism_completionOrderVaries" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.028">
-    <system-out><![CDATA[[C:MSG, A:MSG, B:MSG]
-]]></system-out>
-  </testcase>
   <testcase name="showNondeterminism_completionOrderVaries" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.026">
     <system-out><![CDATA[[B:MSG, C:MSG, A:MSG]
 ]]></system-out>
   </testcase>
-  <testcase name="showNondeterminism_completionOrderVaries" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.024">
-    <system-out><![CDATA[[A:MSG, C:MSG, B:MSG]
+  <testcase name="showNondeterminism_completionOrderVaries" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.02">
+    <system-out><![CDATA[[B:MSG, A:MSG, C:MSG]
 ]]></system-out>
   </testcase>
-  <testcase name="showNondeterminism_completionOrderVaries" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.032">
+  <testcase name="showNondeterminism_completionOrderVaries" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.027">
+    <system-out><![CDATA[[B:MSG, C:MSG, A:MSG]
+]]></system-out>
+  </testcase>
+  <testcase name="showNondeterminism_completionOrderVaries" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.012">
+    <system-out><![CDATA[[C:MSG, B:MSG, A:MSG]
+]]></system-out>
+  </testcase>
+  <testcase name="showNondeterminism_completionOrderVaries" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.019">
     <system-out><![CDATA[[C:MSG, A:MSG, B:MSG]
 ]]></system-out>
   </testcase>
   <testcase name="showNondeterminism_completionOrderVaries" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.03">
     <system-out><![CDATA[[C:MSG, A:MSG, B:MSG]
+]]></system-out>
+  </testcase>
+  <testcase name="showNondeterminism_completionOrderVaries" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.02">
+    <system-out><![CDATA[[B:MSG, A:MSG, C:MSG]
+]]></system-out>
+  </testcase>
+  <testcase name="showNondeterminism_completionOrderVaries" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.025">
+    <system-out><![CDATA[[B:MSG, C:MSG, A:MSG]
+]]></system-out>
+  </testcase>
+  <testcase name="showNondeterminism_completionOrderVaries" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.042">
+    <system-out><![CDATA[[B:MSG, C:MSG, A:MSG]
+]]></system-out>
+  </testcase>
+  <testcase name="showNondeterminism_completionOrderVaries" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.03">
+    <system-out><![CDATA[[B:MSG, A:MSG, C:MSG]
+]]></system-out>
+  </testcase>
+  <testcase name="showNondeterminism_completionOrderVaries" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.025">
+    <system-out><![CDATA[[B:MSG, C:MSG, A:MSG]
+]]></system-out>
+  </testcase>
+  <testcase name="showNondeterminism_completionOrderVaries" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.031">
+    <system-out><![CDATA[[B:MSG, A:MSG, C:MSG]
+]]></system-out>
+  </testcase>
+  <testcase name="showNondeterminism_completionOrderVaries" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.032">
+    <system-out><![CDATA[[C:MSG, B:MSG, A:MSG]
+]]></system-out>
+  </testcase>
+  <testcase name="showNondeterminism_completionOrderVaries" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.019">
+    <system-out><![CDATA[[A:MSG, C:MSG, B:MSG]
+]]></system-out>
+  </testcase>
+  <testcase name="showNondeterminism_completionOrderVaries" classname="coen448.computablefuture.test.AsyncProcessorTest" time="0.016">
+    <system-out><![CDATA[[C:MSG, B:MSG, A:MSG]
 ]]></system-out>
   </testcase>
 </testsuite>

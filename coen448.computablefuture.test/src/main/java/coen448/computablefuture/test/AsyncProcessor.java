@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class AsyncProcessor {
 	
@@ -35,6 +36,22 @@ public class AsyncProcessor {
         return CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]))
             .thenApply(v -> completionOrder);
         
+    }
+
+    public CompletableFuture<String> processAsyncFailFast(
+            List<Microservice> services,
+            List<String> messages) {
+
+        List<CompletableFuture<String>> futures = IntStream.range(0, services.size())
+            .mapToObj(i -> services.get(i).retrieveAsync(messages.get(i)))
+            .collect(Collectors.toList());
+
+        // Fail-fast: any exception causes allOf to complete exceptionally.
+        return CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]))
+            .thenApply(v -> futures.stream()
+                .map(CompletableFuture::join)
+                .collect(Collectors.joining(" ")));
+
     }
     
 }
