@@ -53,5 +53,23 @@ public class AsyncProcessor {
                 .collect(Collectors.joining(" ")));
 
     }
+
+    public CompletableFuture<List<String>> processAsyncFailPartial(
+            List<Microservice> services,
+            List<String> messages) {
+
+        List<CompletableFuture<String>> futures = IntStream.range(0, services.size())
+            .mapToObj(i -> services.get(i).retrieveAsync(messages.get(i))
+                .handle((value, ex) -> ex == null ? value : null))
+            .collect(Collectors.toList());
+
+        // Fail-partial: collect only successful results; failures are skipped.
+        return CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]))
+            .thenApply(v -> futures.stream()
+                .map(CompletableFuture::join)
+                .filter(value -> value != null)
+                .collect(Collectors.toList()));
+
+    }
     
 }
